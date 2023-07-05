@@ -1,0 +1,137 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Opis funkcji w aplikacji do pomiarów danych
+============================================
+
+**create_connection**
+
+1. conn=None: Inicjalizuje zmienną conn jako None.
+2. try:: Rozpoczyna blok kodu, który może wygenerować wyjątek.
+3. conn=sqlite3.connect(db_file): Próbuje nawiązać połączenie z bazą danych SQLite, używając funkcji connect z modułu sqlite3. Parametr db_file to ścieżka do pliku bazy danych.
+4. except Error as e:: Jeśli wystąpi wyjątek typu Error, wykonuje kod znajdujący się w tym bloku.
+5. print(e): Wypisuje komunikat błędu na standardowym wyjściu. Zmienna e przechowuje informacje o wyjątku.
+6. return conn: Zwraca obiekt połączenia conn. Jeśli połączenie zostało pomyślnie nawiązane, zmienna conn zawiera połączenie z bazą danych. W przeciwnym razie, jeśli wystąpił błąd, zmienna conn ma wartość None.
+
+
+.. code:: python
+   
+   def create_connection(db_file):
+    conn=None
+    try:
+        conn=sqlite3.connect(db_file)
+    except Error as e: 
+        print(e)
+    return conn
+
+
+**create_table**
+ W tej funkcji połączenie z bazą danych jest używane do utworzenia kursora, a następnie kursor jest używany do wykonania komendy SQL w celu utworzenia tabeli.
+
+1. def create_table(conn,coment):: Definiuje funkcję create_table, która przyjmuje dwa parametry: conn (obiekt połączenia z bazą danych) i coment (komenda SQL do utworzenia tabeli).
+2. try:: Rozpoczyna blok kodu, który może wygenerować wyjątek.
+3. c=conn.cursor(): Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. c.execute(coment): Wykonuje komendę SQL przekazaną jako parametr coment. Komenda ta jest wykonywana na bazie danych za pomocą metody execute kursora c.
+5. except Error as e:: Jeśli wystąpi wyjątek typu Error, wykonuje kod znajdujący się w tym bloku.
+6. print(e): Wypisuje komunikat błędu na standardowym wyjściu. Zmienna e przechowuje informacje o wyjątku.
+
+.. code:: python
+
+   def create_table(conn,coment):
+    try:
+        c=conn.cursor()
+        c.execute(coment)
+    except Error as e:
+        print(e)
+
+
+**select_all**
+ Ta funkcja wykonuje zapytanie SQL, pobiera wszystkie wyniki i wyświetla je w pętli. Działa na bazie danych, która zawiera tabelę o nazwie "pomiary".
+
+1. def select_all(conn): Definiuje funkcję select_all, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. c=conn.cursor(): Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+3. c.execute("SELECT * FROM pomiary"): Wykonuje zapytanie SQL "SELECT * FROM pomiary". Zapytanie to pobiera wszystkie wiersze (rekordy) z tabeli o nazwie "pomiary".
+4. rows=c.fetchall(): Pobiera wszystkie wyniki z wykonanego zapytania i przypisuje je do zmiennej rows. Metoda fetchall() zwraca wyniki w postaci listy krotek, gdzie każda krotka reprezentuje jeden wiersz wyniku.
+5. for row in rows:: Rozpoczyna pętlę for, która iteruje przez wszystkie wiersze wynikowe.
+6. print(row): Wyświetla zawartość każdego wiersza wynikowego na standardowym wyjściu. W tym przypadku wyświetlany jest cały wiersz.
+
+.. code:: python
+
+   def select_all(conn):
+    c=conn.cursor()
+    c.execute("SELECT * FROM pomiary")
+    rows=c.fetchall()
+    for row in rows:
+        print(row)
+
+
+**insert_data**
+ Ta funkcja służy do wstawiania danych do tabeli pomiary w bazie danych. Wykonuje zapytanie SQL, używając danych przekazanych jako parametr data, a następnie zatwierdza zmiany w bazie danych. Zwraca identyfikator ostatnio wstawionego wiersza.
+
+1. def insert_data(conn, data): Definiuje funkcję insert_data, która przyjmuje dwa parametry: conn (obiekt połączenia z bazą danych) oraz data (dane do wstawienia).
+2. sql='''INSERT INTO pomiary(ulica,nr_budynku,nr_mieszkania,data,pomiar) VALUES(?,?,?,?,?)''': Tworzy zapytanie SQL do wstawiania danych do tabeli pomiary. Wskazuje nazwy kolumn, do których dane będą wstawiane, oraz używa symboli zapytania ? jako zastępniki dla wartości, które zostaną przekazane w parametrze data.
+3. c=conn.cursor(): Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. c.execute(sql, data): Wykonuje zapytanie SQL, używając zapytania sql oraz danych przekazanych w parametrze data. Symbole zapytania ? w zapytaniu są zastępowane odpowiednimi wartościami z listy data.
+5. conn.commit(): Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+6. return c.lastrowid: Zwraca identyfikator ostatnio wstawionego wiersza (lastrowid), który jest generowany automatycznie przez bazę danych. Ten identyfikator może być przydatny, gdy chcemy mieć dostęp do nowo wstawionego wiersza.
+
+
+.. code:: python
+
+   def insert_data(conn,data):
+    sql='''INSERT INTO pomiary(ulica,nr_budynku,nr_mieszkania,data,pomiar)
+        VALUES(?,?,?,?,?)'''
+    c=conn.cursor()
+    c.execute(sql,data)
+    conn.commit()
+    return c.lastrowid
+
+
+**to_csv**
+ Ta funkcja służy do zapisywania danych w formacie CSV. Iteruje po wierszach danych przekazanych jako parametr data i zapisuje je w pliku CSV. Każdy wiersz jest zapisywany bez pierwszej wartości (pomijając ją). Plik CSV jest otwierany w trybie dodawania, co oznacza, że nowe dane są dodawane na końcu pliku bez nadpisywania istniejących zawartości.
+
+1. def to_csv(data): Definiuje funkcję to_csv, która przyjmuje jeden parametr data (dane do zapisania w pliku CSV).
+2. with open('pomiary_aplikacja.csv', 'a', newline='\n') as file: Otwiera plik o nazwie 'pomiary_aplikacja.csv' w trybie dodawania ('a'). Używane jest polecenie with open, które automatycznie zarządza zamykaniem pliku po zakończeniu bloku kodu. Parametr newline='\n' zapewnia poprawne formatowanie nowych linii w pliku CSV.
+3. writer=csv.writer(file): Tworzy obiekt writer z modułu csv, który będzie używany do zapisywania danych w formacie CSV. Obiekt ten jest skonfigurowany na podstawie otwartego pliku file.
+4. for row in data: Rozpoczyna pętlę for, która iteruje po wierszach w parametrze data.
+5. new_row=row[1:]: Tworzy nowy wiersz new_row, który jest skróconą wersją aktualnego wiersza row. Pomija pierwszą wartość z aktualnego wiersza, aby nie zapisywać jej do pliku CSV.
+6. writer.writerow(new_row): Zapisuje new_row jako wiersz w pliku CSV przy użyciu metody writerow() obiektu writer.
+
+
+.. code:: python
+
+   def to_csv(data):
+    with open('pomiary_aplikacja.csv','a',newline='\n') as file:
+        writer=csv.writer(file)
+        for row in data: 
+            new_row=row[1:]
+            writer.writerow(new_row)
+
+
+**usun_dane**
+ Ta funkcja służy do usuwania wierszy z tabeli pomiary na podstawie podanego identyfikatora id. Wykonuje zapytanie SQL, usuwa wiersze, a następnie zatwierdza zmiany w bazie danych.
+
+1. def usun_dane(conn, id): Definiuje funkcję usun_dane, która przyjmuje dwa parametry: conn (obiekt połączenia z bazą danych) oraz id (identyfikator wiersza do usunięcia).
+2. sql="DELETE FROM pomiary WHERE id=?": Tworzy zapytanie SQL, które będzie usuwać wiersze z tabeli pomiary na podstawie kolumny id. Symbol zapytania ? jest używany jako zastępnik dla wartości identyfikatora id.
+3. cur=conn.cursor(): Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. cur.execute(sql, (id,)): Wykonuje zapytanie SQL, używając zapytania sql oraz wartości identyfikatora id. Wartość id jest przekazywana jako pojedynczy element krotki (id,).
+5. conn.commit(): Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+
+.. code:: python
+
+   def usun_dane(conn,id):
+    sql="DELETE FROM pomiary WHERE id=?"
+    cur=conn.cursor()
+    cur.execute(sql,(id,))
+    conn.commit()
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

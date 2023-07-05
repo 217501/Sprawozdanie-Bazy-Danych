@@ -1,0 +1,18 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Dokumentacje do aplikacjii
+========================================
+
+.. toctree::
+   aplikacja_do_pomiarow
+   aplikacja_do_bazydanych
+   aplikacja_do_obrobki
+   :maxdepth: 2
+   :caption: Contents:
+
+
+
+

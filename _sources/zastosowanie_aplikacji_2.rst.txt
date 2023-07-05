@@ -1,0 +1,22 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Zastosowanie aplikacji do bazy danych
+========================================
+**Ta funkcja służy do obsługi wyborów użytkownika w aplikacji. Na podstawie wartości wybor wykonuje różne działania:**
+
+1. Gdy wciśniemy 1, program stworzy tabele pomiary
+2. Gdy wciśniemy 2, program usunie tabele pomiary 
+3. Gdy wciśniemy 3, program wgra testowe dane do tabeli pomiary
+4. Gdy wciśniemy 4, program usunie nam wszystkie dane z tabeli pomiary
+5. Gdy wciśniemy 5, program wgra dane z pliku csv do tabeli pomiary
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

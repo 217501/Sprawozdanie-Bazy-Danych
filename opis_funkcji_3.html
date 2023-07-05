@@ -1,0 +1,372 @@
+<!doctype html>
+<html class="no-js" lang="pl">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Indeks" href="genindex.html" /><link rel="search" title="Szukaj" href="search.html" /><link rel="next" title="Zastosowanie aplikacji do obróbki danych" href="zastosowanie_aplikacji_3.html" /><link rel="prev" title="Aplikacja do obróbki" href="aplikacja_do_obrobki.html" />
+
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>Opis funkcji w aplikacji do obróbki danych - Sprawozdanie - dokumentacja</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Sprawozdanie  - dokumentacja</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Sprawozdanie  - dokumentacja</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Szukaj" name="q" aria-label="Szukaj">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="wstep.html">Wstęp do sprawozdania</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Wstęp do sprawozdania</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="wstep_1.html">Cele stosowania partycjonowania danych</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Cele stosowania partycjonowania danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="wstep_2.html">Zastosowanie partycjonowania</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Zastosowanie partycjonowania</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="wstep_3.html">Zalety i wady partycjonowania</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Zalety i wady partycjonowania</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="wstep_4.html">Implementacja partycjonowania w PostgreSQL</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Implementacja partycjonowania w PostgreSQL</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="dokumentacje_do_aplikacji.html">Dokumentacje do aplikacjii</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Dokumentacje do aplikacjii</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="aplikacja_do_pomiarow.html">Aplikacja do pomiarów</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of Aplikacja do pomiarów</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="opis_funkcji_1.html">Opis funkcji w aplikacji do pomiarów danych</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Opis funkcji w aplikacji do pomiarów danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="zastosowanie_aplikacji_1.html">Zastosowanie aplikacji do pomiarów</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Zastosowanie aplikacji do pomiarów</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aplikacja_do_bazydanych.html">Aplikacja do bazy danych</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Aplikacja do bazy danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="opis_funkcji_2.html">Opis funkcji w aplikacji do bazy danych</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Opis funkcji w aplikacji do bazy danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="zastosowanie_aplikacji_2.html">Zastosowanie aplikacji do bazy danych</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Zastosowanie aplikacji do bazy danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="aplikacja_do_obrobki.html">Aplikacja do obróbki</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Aplikacja do obróbki</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current has-children current-page"><a class="current reference internal" href="#">Opis funkcji w aplikacji do obróbki danych</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Opis funkcji w aplikacji do obróbki danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="zastosowanie_aplikacji_3.html">Zastosowanie aplikacji do obróbki danych</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Zastosowanie aplikacji do obróbki danych</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="opis-funkcji-w-aplikacji-do-obrobki-danych">
+<h1>Opis funkcji w aplikacji do obróbki danych<a class="headerlink" href="#opis-funkcji-w-aplikacji-do-obrobki-danych" title="Permalink to this heading">#</a></h1>
+<dl class="simple">
+<dt><strong>select_data</strong></dt><dd><p>Ta funkcja wykonuje zapytanie SQL, które pobiera dane z tabeli pomiary dla wybranych kolumn. Następnie wyniki są konwertowane do obiektu DataFrame za pomocą biblioteki pandas i wyświetlane na ekranie.</p>
+</dd>
+</dl>
+<ol class="arabic simple">
+<li><p>def select_data(conn): Definiuje funkcję select_data, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).</p></li>
+<li><p>kolumny=(„Ulica”,”Nr_budynku”,”Nr_mieszkania”,”Data”,”Pomiar”) Tworzy krotkę kolumny, która zawiera nazwy kolumn, które będą wyświetlane w wynikach.</p></li>
+<li><p>curr=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.</p></li>
+<li><p>sql=”SELECT ulica,nr_budynku,nr_mieszkania,data,pomiar FROM pomiary” Tworzy zmienną sql, która zawiera zapytanie SQL do pobrania danych z tabeli pomiary tylko dla wybranych kolumn.</p></li>
+<li><p>curr.execute(sql) Wykonuje zapytanie SQL, używając zapytania sql, które pobiera dane z tabeli.</p></li>
+<li><p>wyniki=curr.fetchall() Pobiera wszystkie wyniki z kursora i przypisuje je do zmiennej wyniki w postaci listy tupli.</p></li>
+<li><p>df=pd.DataFrame(wyniki, columns=kolumny) Tworzy obiekt DataFrame z wyników, używając listy tupli wyniki i nazw kolumn kolumny. DataFrame jest strukturą danych tabelarycznych, która pozwala na łatwe manipulowanie i analizowanie danych.</p></li>
+<li><p>print(df) Wyświetla utworzony DataFrame, który zawiera wyniki zapytania.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_data</span><span class="p">(</span><span class="n">conn</span><span class="p">):</span>
+ <span class="n">kolumny</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Ulica&quot;</span><span class="p">,</span><span class="s2">&quot;Nr_budynku&quot;</span><span class="p">,</span><span class="s2">&quot;Nr_mieszkania&quot;</span><span class="p">,</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span><span class="s2">&quot;Pomiar&quot;</span><span class="p">)</span>
+ <span class="n">curr</span><span class="o">=</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+ <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;SELECT ulica,nr_budynku,nr_mieszkania,data,pomiar FROM pomiary&quot;</span>
+ <span class="n">curr</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+ <span class="n">wyniki</span><span class="o">=</span><span class="n">curr</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+ <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wyniki</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">kolumny</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>wykres</strong></dt><dd><p>Ta funkcja pobiera dane z tabeli pomiary, grupuje je według daty i tworzy wykres słupkowy, który przedstawia ilość pomiarów w zależności od daty. Wykres jest wyświetlany na ekranie.</p>
+</dd>
+</dl>
+<ol class="arabic simple">
+<li><p>def wykres(conn): Definiuje funkcję wykres, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).</p></li>
+<li><p>curr=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.</p></li>
+<li><p>query = „”” SELECT data, COUNT(*) AS count FROM pomiary GROUP BY data ORDER BY data „”” Tworzy zmienną query, która zawiera zapytanie SQL do pobrania danych z tabeli pomiary. Zapytanie to grupuje pomiary według daty i zlicza ilość pomiarów dla każdej daty.</p></li>
+<li><p>curr.execute(query) Wykonuje zapytanie SQL, używając zapytania query, które pobiera dane z tabeli.</p></li>
+<li><p>rows=curr.fetchall() Pobiera wszystkie wyniki z kursora i przypisuje je do zmiennej rows w postaci listy tupli.</p></li>
+<li><p>df=pd.DataFrame(rows, columns=[„data”,”count”]) Tworzy obiekt DataFrame z wyników, używając listy tupli rows i nadając nazwy kolumn jako „data” i „count”.</p></li>
+<li><p>plt.figure(figsize=(10, 6)) Tworzy nową figurę (wykres) o rozmiarze 10x6 cali.</p></li>
+<li><p>plt.bar(df[«data»], df[«count»], color=»blue», alpha=0.5) Tworzy wykres słupkowy, gdzie oś X to wartości kolumny „data” z DataFrame, a oś Y to wartości kolumny „count” z DataFrame. Słupki są koloru niebieskiego (blue) i mają przezroczystość 0.5 (alpha=0.5).</p></li>
+<li><p>plt.xlabel(«Data») Ustawia etykietę osi X na „Data”.</p></li>
+<li><p>plt.ylabel(«Ilość pomiarów») Ustawia etykietę osi Y na „Ilość pomiarów”.</p></li>
+<li><p>plt.title(«Wykres słupkowy - Ilość pomiarów w zależności od daty») Ustawia tytuł wykresu na „Wykres słupkowy - Ilość pomiarów w zależności od daty”.</p></li>
+<li><p>plt.xticks(rotation=90) Obraca etykiety na osi X o 90 stopni, aby były bardziej czytelne w przypadku dużej ilości dat.</p></li>
+<li><p>plt.tight_layout() Dopasowuje układ wykresu, aby zapewnić odpowiednie odstępy między elementami.</p></li>
+<li><p>daty_z_pomiarami = df[«data»].tolist() Tworzy listę dat z kolumny „data” DataFrame.</p></li>
+<li><p>plt.xticks(daty_z_pomiarami) Ustawia tylko te daty jako etykiety na osi X, które mają przypisane pomiary.</p></li>
+<li><p>plt.show() Wyświetla wykres.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wykres</span><span class="p">(</span><span class="n">conn</span><span class="p">):</span>
+ <span class="n">curr</span><span class="o">=</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+ <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"> SELECT data, COUNT(*) AS count</span>
+<span class="s2"> FROM pomiary</span>
+<span class="s2"> GROUP BY data</span>
+<span class="s2"> ORDER BY data</span>
+<span class="s2"> &quot;&quot;&quot;</span>
+ <span class="n">curr</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+ <span class="n">rows</span><span class="o">=</span><span class="n">curr</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+ <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="s2">&quot;count&quot;</span><span class="p">])</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Ilość pomiarów&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Wykres słupkowy - Ilość pomiarów w zależności od daty&#39;</span><span class="p">)</span>
+
+ <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+ <span class="c1"># Wybieranie tylko tych dat, które mają przypisane pomiary</span>
+ <span class="n">daty_z_pomiarami</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">daty_z_pomiarami</span><span class="p">)</span>
+
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="zastosowanie_aplikacji_3.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Zastosowanie aplikacji do obróbki danych</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="aplikacja_do_obrobki.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Aplikacja do obróbki</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, 217501
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

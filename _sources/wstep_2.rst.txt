@@ -1,0 +1,31 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Zastosowanie partycjonowania
+========================================
+
+Partycjonowanie danych ma wiele zastosowań w różnych dziedzinach. Oto kilka przykładów:
+
+1. Bazy danych: W systemach zarządzania bazami danych (DBMS) partycjonowanie jest powszechnie stosowane do efektywnego przechowywania i przetwarzania dużych zbiorów danych. Podział danych na partycje umożliwia równoczesne przetwarzanie zapytań, równoważenie obciążenia i zwiększenie wydajności systemu.
+
+2. Obliczenia rozproszone: W klastrach obliczeniowych partycjonowanie danych pozwala na równomierne rozłożenie obciążenia między węzłami klastra. Każdy węzeł może przetwarzać dane związane tylko z określoną partycją, co zwiększa wydajność systemu i umożliwia skalowanie.
+
+3. Przetwarzanie równoległe: Partycjonowanie danych jest szczególnie przydatne w kontekście przetwarzania równoległego. Różne partycje mogą być przetwarzane niezależnie przez wiele wątków lub procesów, co przyspiesza czas wykonania zadań przetwarzania danych.
+
+4. Analiza danych i eksploracja: W przypadku dużych zbiorów danych partycjonowanie ułatwia wykonywanie analizy danych i eksploracji. Można szybko przetwarzać i analizować poszczególne partycje, aby odkrywać wzorce, wykrywać anomalie lub generować raporty.
+
+5. Systemy rozproszone: Partycjonowanie danych jest nieodzowne w systemach rozproszonych, takich jak systemy plików rozproszonych (DFS) czy systemy baz danych rozproszonych. Dzięki partycjonowaniu dane są rozproszone i replikowane w klastrze, co pozwala na zwiększenie dostępności, wydajności i skalowalności systemu.
+
+6. Przetwarzanie strumieniowe: W przypadku przetwarzania strumieniowego, partycjonowanie danych może być używane do równoległego przetwarzania strumieni danych na różnych węzłach lub wątkach. Każda partycja może być niezależnie przetwarzana, co przyspiesza analizę strumieniową.
+
+ Te przykłady pokazują, że partycjonowanie danych jest niezwykle przydatne w obszarach, w których mamy do czynienia z dużymi zbiorami danych i potrzebujemy skalowalności, wydajności i równoległego przetwarzania.
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

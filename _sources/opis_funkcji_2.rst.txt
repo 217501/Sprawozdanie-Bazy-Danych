@@ -1,0 +1,146 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Opis funkcji w aplikacji do bazy danych
+=============================================
+
+**create_tabel**
+ Ta funkcja służy do tworzenia tabeli pomiary w bazie danych. Wykorzystuje zapytanie SQL do utworzenia tabeli z określonymi kolumnami i ograniczeniami. Następnie wykonuje to zapytanie przy użyciu kursora i zatwierdza zmiany w bazie danych. Na końcu zamyka kursor.
+ 
+1. def create_table(conn): Definiuje funkcję create_table, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. sql_command="""CREATE TABLE IF NOT EXISTS public.pomiary ...""": Tworzy zmienną sql_command, która zawiera wieloliniowy łańcuch znaków (triple quote) reprezentujący zapytanie SQL do utworzenia tabeli pomiary. Zapytanie to zawiera definicję kolumn i ograniczeń (constraints) tabeli.
+3. cur=conn.cursor(): Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. cur.execute(sql_command): Wykonuje zapytanie SQL, używając zapytania sql_command, które zawiera instrukcję tworzenia tabeli.
+5. conn.commit(): Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+6. cur.close(): Zamyka kursor, zwalniając zasoby powiązane z nim.
+
+.. code:: python
+   
+   def create_table(conn):
+    sql_command="""CREATE TABLE IF NOT EXISTS public.pomiary
+   (
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    ulica text COLLATE pg_catalog."default" NOT NULL,
+    nr_budynku integer NOT NULL,
+    nr_mieszkania integer NOT NULL,
+    data date NOT NULL,
+    pomiar integer NOT NULL,
+    CONSTRAINT pomiary_pkey PRIMARY KEY (id)
+   );"""
+    cur=conn.cursor()
+    cur.execute(sql_command)
+    conn.commit()
+    cur.close()
+
+
+
+**delete_table**
+ Ta funkcja służy do usuwania tabeli "pomiary" z bazy danych. Wykorzystuje zapytanie SQL do wykonania instrukcji DROP TABLE w celu usunięcia tabeli. Następnie zatwierdza zmiany w bazie danych i zamyka kursor.
+ 
+1. def delete_table(conn): Definiuje funkcję delete_table, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. sql_command="""DROP TABLE IF EXISTS public."pomiary";""" Tworzy zmienną sql_command, która zawiera zapytanie SQL do usunięcia tabeli "pomiary". Zapytanie to używa instrukcji DROP TABLE, aby usunąć tabelę, a IF EXISTS sprawdza, czy tabela istnieje przed jej usunięciem.
+3. cur=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. cur.execute(sql_command) Wykonuje zapytanie SQL, używając zapytania sql_command, które zawiera instrukcję usuwania tabeli.
+5. conn.commit() Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+6. cur.close() Zamyka kursor, zwalniając zasoby powiązane z nim.
+
+.. code:: python
+
+   def delete_table(conn):
+    sql_command="""
+        DROP TABLE IF EXISTS public."pomiary";"""
+    cur=conn.cursor()
+    cur.execute(sql_command)
+    conn.commit()
+    cur.close()
+
+
+
+**insert_temp_data**
+ Ta funkcja służy do wczytania danych z pliku CSV (przykladowe_pomiary.csv) i wstawienia ich do tabeli pomiary w bazie danych. Wykorzystuje czytnik CSV do odczytu wierszy z pliku, a następnie wykonuje zapytanie SQL dla każdego wiersza w celu wstawienia danych do tabeli. Po zakończeniu zatwierdza zmiany w bazie danych i zamyka kursor.
+ 
+1. def insert_temp_data(conn): Definiuje funkcję insert_temp_data, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. with open('przykladowe_pomiary.csv','r') as file: Otwiera plik przykladowe_pomiary.csv w trybie odczytu za pomocą bloku with, który automatycznie zarządza zamknięciem pliku po zakończeniu.
+3. reader=csv.reader(file) Tworzy czytnik CSV (reader), który odczytuje zawartość pliku CSV.
+4. cur=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+5. for row in reader: Rozpoczyna pętlę, która iteruje przez wiersze w czytniku CSV.
+6. row_tuple=tuple(row) Konwertuje wiersz na krotkę (tuple) i przypisuje go do zmiennej row_tuple.
+7. cur.execute("""INSERT INTO pomiary (ulica,nr_budynku,nr_mieszkania,data,pomiar) VALUES (%s,%s,%s,%s,%s);""", row_tuple) Wykonuje zapytanie SQL do wstawienia danych z krotki row_tuple do tabeli pomiary. Zapytanie to wykorzystuje parametry zastępcze %s do bezpiecznego wstawiania danych.
+8. conn.commit() Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+9. cur.close() Zamyka kursor, zwalniając zasoby powiązane z nim.
+
+.. code:: python
+
+   def insert_temp_data(conn):
+    with open('przykladowe_pomiary.csv','r') as file:
+        reader=csv.reader(file)
+        cur=conn.cursor()
+        for row in reader:
+            row_tuple=tuple(row)
+            cur.execute("""INSERT INTO pomiary (ulica,nr_budynku,nr_mieszkania,data,pomiar) VALUES (%s,%s,%s,%s,%s);""",
+                        row_tuple)
+            conn.commit()
+    cur.close()
+
+
+**insert_data**
+ Ta funkcja służy do wczytania danych z pliku CSV (pomiary_aplikacja.csv) i wstawienia ich do tabeli pomiary w bazie danych. Wykorzystuje czytnik CSV do odczytu wierszy z pliku, a następnie wykonuje zapytanie SQL dla każdego wiersza w celu wstawienia danych do tabeli. Po zakończeniu zatwierdza zmiany w bazie danych i zamyka kursor.
+ 
+1. def insert_data(conn): Definiuje funkcję insert_data, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. with open('pomiary_aplikacja.csv','r') as file: Otwiera plik pomiary_aplikacja.csv w trybie odczytu za pomocą bloku with, który automatycznie zarządza zamknięciem pliku po zakończeniu.
+3. reader=csv.reader(file) Tworzy czytnik CSV (reader), który odczytuje zawartość pliku CSV.
+4. for row in reader: Rozpoczyna pętlę, która iteruje przez wiersze w czytniku CSV.
+5. cur=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+6. pomiary_tuple=tuple(row) Konwertuje wiersz na krotkę (tuple) i przypisuje go do zmiennej pomiary_tuple.
+7. cur.execute("""INSERT INTO pomiary (ulica,nr_budynku,nr_mieszkania,data,pomiar) VALUES (%s,%s,%s,%s,%s);""", pomiary_tuple) Wykonuje zapytanie SQL do wstawienia danych z krotki pomiary_tuple do tabeli pomiary. Zapytanie to wykorzystuje parametry zastępcze %s do bezpiecznego wstawiania danych.
+8. conn.commit() Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+9. cur.close() Zamyka kursor, zwalniając zasoby powiązane z nim.
+
+.. code:: python
+
+   def insert_data(conn):
+       with open('pomiary_aplikacja.csv','r') as file:
+          reader=csv.reader(file)
+          for row in reader:
+             cur=conn.cursor()
+             pomiary_tuple=tuple(row)
+             cur.execute(
+                  """INSERT INTO pomiary (ulica,nr_budynku,nr_mieszkania,data,pomiar)
+                    VALUES (%s,%s,%s,%s,%s);""",
+              pomiary_tuple)
+              conn.commit()
+             cur.close()
+
+
+**delete_data**
+ Ta funkcja służy do wykonania zapytania SQL, które usuwa wszystkie wiersze z tabeli pomiary w bazie danych. Wykorzystuje kursor do wykonania zapytania, a następnie zatwierdza zmiany w bazie danych i zamyka kursor.
+ 
+1. def delete_data(conn): Definiuje funkcję delete_data, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. sql_command="""DELETE FROM pomiary;""" Tworzy zmienną sql_command, która zawiera zapytanie SQL do usunięcia wszystkich wierszy z tabeli pomiary.
+3. cur=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. cur.execute(sql_command) Wykonuje zapytanie SQL, używając zapytania sql_command, które zawiera instrukcję usuwania wszystkich wierszy z tabeli.
+5. conn.commit() Zatwierdza (commit) transakcję, czyli zapisuje zmiany w bazie danych.
+6. cur.close() Zamyka kursor, zwalniając zasoby powiązane z nim.
+
+
+.. code:: python
+
+   def delete_data(conn):
+      sql_command="""
+         DELETE FROM pomiary;"""
+       cur=conn.cursor()
+       cur.execute(sql_command)
+       conn.commit()
+       cur.close()
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

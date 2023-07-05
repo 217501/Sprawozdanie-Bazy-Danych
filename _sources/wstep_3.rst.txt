@@ -1,0 +1,32 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Zalety i wady partycjonowania
+========================================
+
+ Zalety partycjonowania danych:
+
+1. Skalowalność: Partycjonowanie danych umożliwia rozproszenie obciążenia i równomierne rozłożenie danych na wiele serwerów lub węzłów w klastrze. Dzięki temu system może skalować się wraz ze wzrostem ilości danych, co zapewnia wyższą wydajność i możliwość obsługi większych zbiorów danych.
+
+2. Wydajność: Poprzez podział danych na mniejsze partycje, możliwe jest równoległe przetwarzanie różnych fragmentów danych. To przyspiesza czas wykonania operacji, takich jak wyszukiwanie, sortowanie, filtrowanie i analiza danych. Dodatkowo, partycjonowanie danych umożliwia efektywne wykorzystanie zasobów obliczeniowych, co przekłada się na wydajniejsze przetwarzanie.
+
+3. Odporność na awarie: Jeśli jeden węzeł lub partycja danych ulegnie awarii, pozostałe partycje mogą nadal działać. To zwiększa odporność systemu na awarie, ponieważ nie cały system zostaje unieruchomiony w przypadku pojedynczej awarii.
+
+ Wady partycjonowania danych:
+
+1. Złożoność: Partycjonowanie danych wprowadza pewien stopień złożoności do systemu. Wymaga planowania podziału danych, monitorowania i zarządzania partycjami. W przypadku nieodpowiedniego partycjonowania, może dojść do nierównomiernego rozłożenia obciążenia lub trudności w przetwarzaniu zapytań, co może wpływać na wydajność systemu.
+
+2. Koszty replikacji: W niektórych przypadkach partycjonowanie danych wymaga replikacji danych między różnymi węzłami lub partycjami, co zwiększa koszty przechowywania i przetwarzania danych.
+
+3. Wymagane narzędzia i technologie: Partycjonowanie danych często wymaga specjalistycznych narzędzi i technologii, aby efektywnie zarządza
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

@@ -1,0 +1,87 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Opis funkcji w aplikacji do obróbki danych
+===========================================
+**select_data**
+ Ta funkcja wykonuje zapytanie SQL, które pobiera dane z tabeli pomiary dla wybranych kolumn. Następnie wyniki są konwertowane do obiektu DataFrame za pomocą biblioteki pandas i wyświetlane na ekranie.
+ 
+1. def select_data(conn): Definiuje funkcję select_data, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. kolumny=("Ulica","Nr_budynku","Nr_mieszkania","Data","Pomiar") Tworzy krotkę kolumny, która zawiera nazwy kolumn, które będą wyświetlane w wynikach.
+3. curr=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+4. sql="SELECT ulica,nr_budynku,nr_mieszkania,data,pomiar FROM pomiary" Tworzy zmienną sql, która zawiera zapytanie SQL do pobrania danych z tabeli pomiary tylko dla wybranych kolumn.
+5. curr.execute(sql) Wykonuje zapytanie SQL, używając zapytania sql, które pobiera dane z tabeli.
+6. wyniki=curr.fetchall() Pobiera wszystkie wyniki z kursora i przypisuje je do zmiennej wyniki w postaci listy tupli.
+7. df=pd.DataFrame(wyniki, columns=kolumny) Tworzy obiekt DataFrame z wyników, używając listy tupli wyniki i nazw kolumn kolumny. DataFrame jest strukturą danych tabelarycznych, która pozwala na łatwe manipulowanie i analizowanie danych.
+8. print(df) Wyświetla utworzony DataFrame, który zawiera wyniki zapytania.
+
+
+.. code:: python
+
+   def select_data(conn):
+    kolumny=("Ulica","Nr_budynku","Nr_mieszkania","Data","Pomiar")
+    curr=conn.cursor()
+    sql="SELECT ulica,nr_budynku,nr_mieszkania,data,pomiar FROM pomiary"
+    curr.execute(sql)
+    wyniki=curr.fetchall()
+    df=pd.DataFrame(wyniki, columns=kolumny)
+    print(df)
+
+**wykres**
+ Ta funkcja pobiera dane z tabeli pomiary, grupuje je według daty i tworzy wykres słupkowy, który przedstawia ilość pomiarów w zależności od daty. Wykres jest wyświetlany na ekranie.
+ 
+1. def wykres(conn): Definiuje funkcję wykres, która przyjmuje jeden parametr conn (obiekt połączenia z bazą danych).
+2. curr=conn.cursor() Tworzy kursor (obiekt służący do wykonywania operacji na bazie danych) na podstawie obiektu połączenia conn.
+3. query = """ SELECT data, COUNT(*) AS count FROM pomiary GROUP BY data ORDER BY data """ Tworzy zmienną query, która zawiera zapytanie SQL do pobrania danych z tabeli pomiary. Zapytanie to grupuje pomiary według daty i zlicza ilość pomiarów dla każdej daty.
+4. curr.execute(query) Wykonuje zapytanie SQL, używając zapytania query, które pobiera dane z tabeli.
+5. rows=curr.fetchall() Pobiera wszystkie wyniki z kursora i przypisuje je do zmiennej rows w postaci listy tupli.
+6. df=pd.DataFrame(rows, columns=["data","count"]) Tworzy obiekt DataFrame z wyników, używając listy tupli rows i nadając nazwy kolumn jako "data" i "count".
+7. plt.figure(figsize=(10, 6)) Tworzy nową figurę (wykres) o rozmiarze 10x6 cali.
+8. plt.bar(df['data'], df['count'], color='blue', alpha=0.5) Tworzy wykres słupkowy, gdzie oś X to wartości kolumny "data" z DataFrame, a oś Y to wartości kolumny "count" z DataFrame. Słupki są koloru niebieskiego (blue) i mają przezroczystość 0.5 (alpha=0.5).
+9. plt.xlabel('Data') Ustawia etykietę osi X na "Data".
+10. plt.ylabel('Ilość pomiarów') Ustawia etykietę osi Y na "Ilość pomiarów".
+11. plt.title('Wykres słupkowy - Ilość pomiarów w zależności od daty') Ustawia tytuł wykresu na "Wykres słupkowy - Ilość pomiarów w zależności od daty".
+12. plt.xticks(rotation=90) Obraca etykiety na osi X o 90 stopni, aby były bardziej czytelne w przypadku dużej ilości dat.
+13. plt.tight_layout() Dopasowuje układ wykresu, aby zapewnić odpowiednie odstępy między elementami.
+14. daty_z_pomiarami = df['data'].tolist() Tworzy listę dat z kolumny "data" DataFrame.
+15. plt.xticks(daty_z_pomiarami) Ustawia tylko te daty jako etykiety na osi X, które mają przypisane pomiary.
+16. plt.show() Wyświetla wykres.
+
+
+.. code:: python
+
+   def wykres(conn):
+    curr=conn.cursor()
+    query = """
+    SELECT data, COUNT(*) AS count
+    FROM pomiary
+    GROUP BY data
+    ORDER BY data
+    """
+    curr.execute(query)
+    rows=curr.fetchall()
+    df=pd.DataFrame(rows, columns=["data","count"])
+    plt.figure(figsize=(10, 6))
+    plt.bar(df['data'], df['count'], color='blue', alpha=0.5)
+    plt.xlabel('Data')
+    plt.ylabel('Ilość pomiarów')
+    plt.title('Wykres słupkowy - Ilość pomiarów w zależności od daty')
+
+    plt.xticks(rotation=90)
+    plt.tight_layout()
+
+    # Wybieranie tylko tych dat, które mają przypisane pomiary
+    daty_z_pomiarami = df['data'].tolist()
+    plt.xticks(daty_z_pomiarami)
+
+    plt.show()
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

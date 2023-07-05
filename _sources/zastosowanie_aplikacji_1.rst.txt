@@ -1,0 +1,21 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Zastosowanie aplikacji do pomiarów
+========================================
+**Podczas korzystania z aplikacji do pomiarów możemy wykonać 4 różne czynności:**
+
+1. Gdy wciśniemy 1, program wczyta dane od użytkownika i wywoła funkcję instert_data do wstawienia tych danych do bazy danych
+2. Gdy wciśniemy 2, program wywoła funkcję select_all do pobrania i wyświetlenia wszystkich danych z bazy danych
+3. Gdy wciśniemy 3, program pobiera dane z bazy danych i wywołuje funkcję to_csv do zapisania tych danych w pliku CSV
+4. Gdy wciśniemy 4, wczytuje identyfikator od użytkownika i wywołuje funkcję usuń_dane do usunięcia wiersza o podanym identyfikatorze z bazy danych
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

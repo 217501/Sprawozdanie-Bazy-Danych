@@ -1,0 +1,29 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Implementacja partycjonowania w PostgreSQL
+===========================================
+
+W PostgreSQL partycjonowanie danych jest obsługiwane za pomocą mechanizmu zwanych tabelami partycjonowanymi (ang. partitioned tables). Oto krótki przegląd implementacji partycjonowania w PostgreSQL:
+
+1. Utworzenie tabeli partycjonowanej: Najpierw musisz utworzyć tabelę partycjonowaną, która będzie służyć jako punkt wejściowy dla partycji. Można to zrobić za pomocą polecenia CREATE TABLE z dodatkową klauzulą PARTITION BY, która określa, według jakiego kryterium dane mają być partycjonowane, na przykład według wartości kolumny.
+
+2. Tworzenie partycji: Następnie tworzysz konkretne partycje, które będą przechowywać faktyczne dane. Każda partycja jest tworzona jako osobna tabela o określonym przedziale wartości lub innych kryteriach partycjonowania. Można to zrobić za pomocą polecenia CREATE TABLE z klauzulą INHERITS, która dziedziczy strukturę tabeli partycjonowanej.
+
+3. Definicja granic partycji: Musisz zdefiniować granice partycji, określając przedział wartości lub kryteria partycjonowania dla każdej partycji. Można to zrobić za pomocą polecenia ALTER TABLE z klauzulą ATTACH PARTITION, która określa, do której partycji należy przypisać konkretne wartości.
+
+4. Zarządzanie partycjami: Po utworzeniu partycji można zarządzać nimi, dodając nowe partycje, usuwając istniejące lub przenosząc dane między partycjami. Można to zrobić za pomocą odpowiednich poleceń ALTER TABLE, takich jak ADD PARTITION, DROP PARTITION lub MOVE PARTITION.
+
+5. Wykorzystanie zapytań: Po skonfigurowaniu partycjonowania możesz wykonywać zapytania na tabeli partycjonowanej tak, jakby to była jedna tabela. PostgreSQL sam zarządza przekierowaniem zapytań do odpowiednich partycji, na podstawie zdefiniowanych granic partycji.
+
+ Warto zauważyć, że partycjonowanie w PostgreSQL wymaga starannego zaprojektowania i konfiguracji, aby uzyskać optymalne wyniki. Dokładne szczegóły dotyczące implementacji partycjonowania w PostgreSQL można znaleźć w dokumentacji PostgreSQL oraz w różnych przykładach i poradnikach dostępnych online.
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+

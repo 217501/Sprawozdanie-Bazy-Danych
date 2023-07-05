@@ -1,0 +1,30 @@
+.. Sprawozdanie documentation master file, created by
+   sphinx-quickstart on Mon Jul  3 12:07:09 2023.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Cele stosowania partycjonowania danych
+===========================================
+
+Partycjonowanie danych to proces podziału dużych zbiorów danych na mniejsze fragmenty, zwane partycjami. Cele stosowania partycjonowania danych obejmują:
+
+1. Skalowalność: Partycjonowanie danych umożliwia rozproszenie obciążenia poprzez równomierne rozłożenie danych na wiele serwerów lub węzłów w klastrze. Dzięki temu system może obsługiwać większe ilości danych i zwiększać swoją wydajność w miarę dodawania kolejnych węzłów.
+
+2. Wydajność: Poprzez podział danych na mniejsze partycje, system może równolegle przetwarzać różne fragmenty danych. To przyspiesza czas wykonania operacji, takich jak wyszukiwanie, sortowanie, filtrowanie i analiza danych.
+
+3. Odporność na awarie: Partycjonowanie danych może wpływać na odporność systemu na awarie. Jeśli jeden węzeł w klastrze ulegnie awarii, inne węzły mogą kontynuować pracę na swoich partycjach danych. W ten sposób minimalizuje się negatywne skutki awarii na cały system.
+
+4. Zarządzanie danymi: Partycjonowanie danych ułatwia zarządzanie dużymi zbiorami danych. Można łatwo dodawać, usuwać i przenosić partycje w celu zoptymalizowania dostępu do danych i wykorzystania zasobów.
+
+5. Bezpieczeństwo: Partycjonowanie danych może również wpływać na bezpieczeństwo systemu. Można stosować różne mechanizmy zabezpieczeń dla różnych partycji, zapewniając kontrolę dostępu i izolację danych.
+ 
+ * Podsumowując partycjonowanie danych pozwala na lepszą skalowalność, wydajność, odporność na awarie, zarządzanie danymi i bezpieczeństwo w systemach obsługujących duże ilości danych.
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+
+
+
